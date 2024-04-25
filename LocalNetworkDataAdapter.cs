@@ -28,7 +28,7 @@ namespace LNDa
             {
                 Console.WriteLine("SocketException: {0}", e);
             }
-    }
+        }
 
         public static void StartPolling(DataRecived dataRecived)
         {
