@@ -30,7 +30,14 @@ namespace LNDa
 
         internal static void TestFunc()
         {
+            LocalNetworkDataAdapter.StartPolling(DefaultDataRecived);
 
         }
+
+        public static void DefaultDataRecived(string data)
+        {
+            return;
+        }
+
     }
 }

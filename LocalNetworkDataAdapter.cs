@@ -7,14 +7,17 @@ namespace LNDa
 {
     internal class LocalNetworkDataAdapter
     {
+        const int DEFAULT_PORT = 13000;
+        const string DEFAULT_HOST_IP = "127.0.0.1";
+
         public delegate void DataRecived(string data);
 
-        public static void SendData(string ip, string data)
+        public static void SendData(string ip, string data, int port=DEFAULT_PORT)
         {
             try
             {
                 TcpClient client = new TcpClient();
-                client.Connect(ip, 13000);
+                client.Connect(ip, port);
                 NetworkStream stream = client.GetStream();
                 stream.Write(Encoding.ASCII.GetBytes(data), 0, data.Length);
                 stream.Close();
@@ -35,11 +38,11 @@ namespace LNDa
             TcpListener server = null;
             try
             {
-                server = new TcpListener(IPAddress.Parse("127.0.0.1"), 13000);
+                server = new TcpListener(IPAddress.Parse(DEFAULT_HOST_IP), DEFAULT_PORT);
                 server.Start();
 
-                Byte[] bytes = new Byte[256];
-                String data = null;
+                byte[] bytes = new byte[256];
+                string data = null;
 
                 while (true)
                 {
@@ -49,10 +52,10 @@ namespace LNDa
                     int n;
                     while ((n = stream.Read(bytes, 0, bytes.Length)) != 0)
                     {
-                        data += System.Text.Encoding.ASCII.GetString(bytes, 0, n);
+                        data += Encoding.ASCII.GetString(bytes, 0, n);
                     }
                     Console.Write(data);
-                    //DataRecived(data);
+                    dataRecived(data);
                     client.Close();
                 }
             }
