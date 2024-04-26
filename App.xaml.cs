@@ -19,7 +19,11 @@ namespace LNDa
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            //UserName = DataProvider.LoadDataList(App.program_path + "name")[0][0];
+            try { 
+                UserName = DataProvider.LoadDataList(App.program_path + "name")[0][0];
+            }
+            catch(ArgumentOutOfRangeException) {
+            }
             TestFunc();
         }
 
@@ -49,6 +53,7 @@ namespace LNDa
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             DataProvider.WriteDataList(program_path + "name", new List<List<string>>() { new List<string>() { UserName } });
+            Environment.Exit(0);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Xml;
 
 namespace AtomicBackuper
 {
@@ -77,6 +78,8 @@ namespace AtomicBackuper
                 }
                 writer.WriteLine(key + delimeter + data[key]);
             }
+            writer.Close();
+            
         }
 
         public static void WriteDataList(string fileName, List<List<string>> data, char delimeter = '=')
@@ -96,6 +99,7 @@ namespace AtomicBackuper
                 output = output.Remove(output.Length - 1, 1);
                 writer.WriteLine(output);
             }
+            writer.Close();
         }
     }
 }
