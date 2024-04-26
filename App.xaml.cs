@@ -19,7 +19,7 @@ namespace LNDa
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            UserName = DataProvider.LoadDataList(App.program_path + "name")[0][0];
+            //UserName = DataProvider.LoadDataList(App.program_path + "name")[0][0];
             TestFunc();
         }
 
@@ -39,6 +39,11 @@ namespace LNDa
         public static void DefaultDataRecived(string data)
         {
             return;
+        }
+
+        public static void DisplayDataRecived(string data)
+        {
+            MessageBox.Show("Получены данные: " + data);
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
