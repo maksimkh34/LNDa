@@ -8,11 +8,11 @@ namespace LNDa
     internal class LocalNetworkDataAdapter
     {
         const int DEFAULT_PORT = 13000;
-        const string DEFAULT_HOST_IP = "192.168.206.213";
+        const string DEFAULT_HOST_IP = "192.168.206.197";
 
         public delegate void DataRecived(string data);
 
-        public static void SendData(string ip, string data, int port=DEFAULT_PORT)
+        public static void SendData(string ip, string data, int port=DEFAULT_PORT)  // ArgumentNull SocketException
         {
             try
             {
@@ -31,14 +31,14 @@ namespace LNDa
             {
                 Console.WriteLine("SocketException: {0}", e);
             }
-        }
+    }
 
         public static void StartPolling(DataRecived dataRecived)
         {
             TcpListener server = null;
             try
             {
-                server = new TcpListener(IPAddress.Parse(DEFAULT_HOST_IP), DEFAULT_PORT);
+                server = new TcpListener(IPAddress.Parse(GetLocalIP()), DEFAULT_PORT);
                 server.Start();
 
                 byte[] bytes = new byte[1048576];
@@ -66,6 +66,25 @@ namespace LNDa
                 Console.WriteLine("SocketException: {0}", e);
             }
             server.Stop();
+        }
+
+        static string GetLocalIP()
+        {
+            IPAddress[] addrs = Dns.GetHostEntry(Dns.GetHostName()).AddressList;
+            string TargetIP = string.Empty;
+
+            foreach (var ad in addrs)
+            {
+                if (ad.ToString().Split('.')[0] == "192" &&
+                    ad.ToString().Split('.')[1] == "168" &&
+                    ad.ToString().Split('.')[2] == "0")
+                {
+                    TargetIP = ad.ToString();
+                }
+            }
+
+            if (TargetIP == string.Empty) throw new Exception("IP 192.168.0.* not found");
+            return TargetIP;
         }
     }
 }
