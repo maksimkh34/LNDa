@@ -26,6 +26,6 @@
         </Border>
 
         <Button Style="{DynamicResource ThemedButton}" Margin="5,5,5,0" Width="120" Height="20" Click="Button_Click_1">Настройки</Button>
-        <Button Style="{DynamicResource ThemedButton}" Margin="5,5,5,0" Width="120" Height="20">Отправить</Button>
+        <Button Style="{DynamicResource ThemedButton}" Margin="5,5,5,0" Width="120" Height="20" Click="Button_Click_2">Отправить</Button>
     </StackPanel>
 </Window>

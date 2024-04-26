@@ -65,7 +65,7 @@ namespace LNDa
             {
                 if (ad.ToString().Split('.')[0] == "192" &&
                     ad.ToString().Split('.')[1] == "168" &&
-                    ad.ToString().Split('.')[2] == "0")
+                    ad.ToString().Split('.')[2] == "109")
                 {
                     TargetIP = ad.ToString();
                 }
