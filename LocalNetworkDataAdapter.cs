@@ -13,24 +13,13 @@ namespace LNDa
 
         public static void SendData(string ip, string data, int port=DEFAULT_PORT)  // ArgumentNull SocketException
         {
-            try
-            {
-                TcpClient client = new TcpClient();
-                client.Connect(ip, port);
-                NetworkStream stream = client.GetStream();
-                stream.Write(Encoding.Default.GetBytes(data), 0, data.Length);
-                stream.Close();
-                client.Close();
-            }
-            catch (ArgumentNullException e)
-            {
-                Console.WriteLine("ArgumentNullException: {0}", e);
-            }
-            catch (SocketException e)
-            {
-                Console.WriteLine("SocketException: {0}", e);
-            }
-    }
+            TcpClient client = new TcpClient();
+            client.Connect(ip, port);
+            NetworkStream stream = client.GetStream();
+            stream.Write(Encoding.Default.GetBytes(data), 0, data.Length);
+            stream.Close();
+            client.Close();
+        }
 
         public static void StartPolling(DataRecived dataRecived)
         {
