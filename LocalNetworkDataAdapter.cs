@@ -8,7 +8,7 @@ namespace LNDa
     internal class LocalNetworkDataAdapter
     {
         const int DEFAULT_PORT = 13000;
-        const string DEFAULT_HOST_IP = "127.0.0.1";
+        const string DEFAULT_HOST_IP = "192.168.206.213";
 
         public delegate void DataRecived(string data);
 
@@ -41,14 +41,16 @@ namespace LNDa
                 server = new TcpListener(IPAddress.Parse(DEFAULT_HOST_IP), DEFAULT_PORT);
                 server.Start();
 
-                byte[] bytes = new byte[256];
+                byte[] bytes = new byte[1048576];
                 string data = null;
 
                 while (true)
                 {
                     TcpClient client = server.AcceptTcpClient();
+
                     data = null;
                     NetworkStream stream = client.GetStream();
+
                     int n;
                     while ((n = stream.Read(bytes, 0, bytes.Length)) != 0)
                     {

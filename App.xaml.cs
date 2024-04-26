@@ -30,8 +30,11 @@ namespace LNDa
 
         internal static void TestFunc()
         {
-            LocalNetworkDataAdapter.StartPolling(DefaultDataRecived);
-
+            while (true)
+            {
+                LocalNetworkDataAdapter.SendData("192.168.206.197", "1234567890qwertyuiop[]asdfghjkl;'zxcvbnm,./");
+            }
+            //LocalNetworkDataAdapter.StartPolling(DefaultDataRecived);
         }
 
         public static void DefaultDataRecived(string data)
