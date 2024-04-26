@@ -8,6 +8,7 @@ namespace LNDa
     internal class LocalNetworkDataAdapter
     {
         const int DEFAULT_PORT = 13000;
+        const string THIRD_IP_BYTE = "109";
 
         public delegate void DataRecived(string data);
 
@@ -65,7 +66,7 @@ namespace LNDa
             {
                 if (ad.ToString().Split('.')[0] == "192" &&
                     ad.ToString().Split('.')[1] == "168" &&
-                    ad.ToString().Split('.')[2] == "0")
+                    ad.ToString().Split('.')[2] == THIRD_IP_BYTE)
                 {
                     TargetIP = ad.ToString();
                 }
