@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AtomicBackuper;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -26,5 +27,15 @@ namespace LNDa
         private void Minimize_TopBar_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
         private void Close_TopBar_Click(object sender, RoutedEventArgs e) => Close();
         private void Button_Click(object sender, RoutedEventArgs e) => Close();
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            App.UserName = NameTextBox.Text;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            NameTextBox.Text = App.UserName;
+        }
     }
 }

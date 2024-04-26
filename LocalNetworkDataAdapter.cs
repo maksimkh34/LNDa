@@ -29,14 +29,16 @@ namespace LNDa
                 server = new TcpListener(IPAddress.Parse(GetLocalIP()), DEFAULT_PORT);
                 server.Start();
 
-                byte[] bytes = new byte[256];
+                byte[] bytes = new byte[1048576];
                 string data = null;
 
                 while (true)
                 {
                     TcpClient client = server.AcceptTcpClient();
+
                     data = null;
                     NetworkStream stream = client.GetStream();
+
                     int n;
                     while ((n = stream.Read(bytes, 0, bytes.Length)) != 0)
                     {

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LNDa"
         Style="{DynamicResource ThemedWindow}"
+        Loaded="Window_Loaded"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel Margin="0,0,0,5">
@@ -25,8 +26,8 @@
         </Border>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,5,0">
             <TextBlock Style="{DynamicResource ThemedLabel}" Margin="5,5,0,0" VerticalAlignment="Center">Отображаемое имя:</TextBlock>
-            <TextBox Style="{DynamicResource ThemedTextBox}" VerticalAlignment="Center" Margin="5,5,0,0" MinWidth="120"></TextBox>
+            <TextBox Style="{DynamicResource ThemedTextBox}" VerticalAlignment="Center" Margin="5,5,0,0" MinWidth="120" x:Name="NameTextBox"></TextBox>
         </StackPanel>
-        <Button Style="{DynamicResource ThemedButton}" Margin="5,5,5,0">Сохранить</Button>
+        <Button Style="{DynamicResource ThemedButton}" Margin="5,5,5,0" Click="Button_Click_1">Сохранить</Button>
     </StackPanel>
 </Window>
