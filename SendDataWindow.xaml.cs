@@ -8,37 +8,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Threading;
 
 namespace LNDa
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для SendDataWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SendDataWindow : Window
     {
-        public MainWindow()
-        { 
+        public SendDataWindow()
+        {
             InitializeComponent();
-            Thread ServerThread = new Thread(new ThreadStart(() => LocalNetworkDataAdapter.StartPolling(App.DefaultDataRecived)));
-            ServerThread.Start();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            LocalNetworkDataAdapter.SendData(IPTextBox.Text, DataTextBox.Text);
         }
 
         private void Border_MouseDonw_Trigger(object sender, RoutedEventArgs e) => DragMove();
         private void Minimize_TopBar_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
         private void Close_TopBar_Click(object sender, RoutedEventArgs e) => Close();
         private void Button_Click(object sender, RoutedEventArgs e) => Close();
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            new Settings().ShowDialog();
-        }
     }
 }
