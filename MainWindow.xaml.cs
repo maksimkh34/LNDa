@@ -22,7 +22,7 @@ namespace LNDa
         public MainWindow()
         { 
             InitializeComponent();
-            Thread ServerThread = new Thread(new ThreadStart(() => LocalNetworkDataAdapter.StartPolling(App.DefaultDataRecived)));
+            Thread ServerThread = new Thread(new ThreadStart(() => LocalNetworkDataAdapter.StartPolling(App.DisplayDataRecived)));
             ServerThread.Start();
         }
 

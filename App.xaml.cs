@@ -41,6 +41,11 @@ namespace LNDa
             return;
         }
 
+        public static void DisplayDataRecived(string data)
+        {
+            MessageBox.Show("Получены данные: " + data);
+        }
+
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             DataProvider.WriteDataList(program_path + "name", new List<List<string>>() { new List<string>() { UserName } });
