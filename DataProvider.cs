@@ -84,7 +84,15 @@ namespace AtomicBackuper
 
         public static void WriteDataList(string fileName, List<List<string>> data, char delimeter = '=')
         {
-            StreamWriter writer = new StreamWriter(fileName);
+            StreamWriter writer;
+            try { 
+                writer = new StreamWriter(fileName);
+            }
+            catch (DirectoryNotFoundException) {
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName));
+                File.Create(fileName).Close();
+                writer = new StreamWriter(fileName);
+            }
             foreach (List<string> dataLine in data)
             {
                 string output = "";
