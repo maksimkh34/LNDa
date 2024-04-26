@@ -8,34 +8,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace LNDa
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Settings.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Settings : Window
     {
-        public MainWindow()
+        public Settings()
         {
             InitializeComponent();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void Border_MouseDonw_Trigger(object sender, RoutedEventArgs e) => DragMove();
         private void Minimize_TopBar_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
         private void Close_TopBar_Click(object sender, RoutedEventArgs e) => Close();
         private void Button_Click(object sender, RoutedEventArgs e) => Close();
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            new Settings().ShowDialog();
-        }
     }
 }

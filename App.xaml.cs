@@ -30,7 +30,6 @@ namespace LNDa
 
         internal static void TestFunc()
         {
-            LocalNetworkDataAdapter.SendData("192.168.0.104", "");
         }
 
         public static void DefaultDataRecived(string data)
