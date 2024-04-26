@@ -1,4 +1,5 @@
-﻿using Project;
+﻿using AtomicBackuper;
+using Project;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,10 +13,13 @@ namespace LNDa
     /// </summary>
     public partial class App : Application
     {
+        internal static string UserName;
+        internal readonly static string program_path = "";
         static string display_msg = "$UNDEFINED$";
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            UserName = DataProvider.LoadDataList(App.program_path + "name")[0][0];
             TestFunc();
         }
 
@@ -37,5 +41,9 @@ namespace LNDa
             return;
         }
 
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            DataProvider.WriteDataList(program_path + "name", new List<List<string>>() { new List<string>() { UserName } });
+        }
     }
 }
