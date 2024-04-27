@@ -40,5 +40,10 @@ namespace LNDa
         {
             new Settings().ShowDialog();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            new SendDataWindow().ShowDialog();
+        }
     }
 }

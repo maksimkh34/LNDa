@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,7 +25,8 @@ namespace LNDa
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            LocalNetworkDataAdapter.SendData(IPTextBox.Text, DataTextBox.Text);
+            try { LocalNetworkDataAdapter.SendData(IPTextBox.Text, DataTextBox.Text); }
+            catch (SocketException) { App.DisplayMessage("Ошибка связи с отправителем. "); }
         }
 
         private void Border_MouseDonw_Trigger(object sender, RoutedEventArgs e) => DragMove();

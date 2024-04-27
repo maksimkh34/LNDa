@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:LNDa"
         Style="{DynamicResource ThemedWindow}"
         Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel Margin="0,0,0,5">

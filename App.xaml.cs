@@ -19,7 +19,8 @@ namespace LNDa
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            //UserName = DataProvider.LoadDataList(App.program_path + "name")[0][0];
+            try { UserName = DataProvider.LoadDataList(program_path + "name")[0][0]; }
+            catch (ArgumentOutOfRangeException) { }
             TestFunc();
         }
 

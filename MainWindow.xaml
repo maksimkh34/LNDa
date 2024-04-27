@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LNDa"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Style="{DynamicResource ThemedWindow}"
         Loaded="Window_Loaded"
@@ -26,6 +27,6 @@
         </Border>
 
         <Button Style="{DynamicResource ThemedButton}" Margin="5,5,5,0" Width="120" Height="20" Click="Button_Click_1">Настройки</Button>
-        <Button Style="{DynamicResource ThemedButton}" Margin="5,5,5,0" Width="120" Height="20">Отправить</Button>
+        <Button Style="{DynamicResource ThemedButton}" Margin="5,5,5,0" Width="120" Height="20" Click="Button_Click_2">Отправить</Button>
     </StackPanel>
 </Window>
