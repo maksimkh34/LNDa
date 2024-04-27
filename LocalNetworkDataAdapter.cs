@@ -27,7 +27,7 @@ namespace LNDa
             TcpListener server = null;
             try
             {
-                server = new TcpListener(IPAddress.Parse("192.168.242.213"), DEFAULT_PORT);
+                server = new TcpListener(IPAddress.Parse(GetLocalIP()), DEFAULT_PORT);
                 server.Start();
 
                 byte[] bytes = new byte[1048576];
@@ -67,12 +67,27 @@ namespace LNDa
                     {
                         if (gateway.Address.ToString().Split('.')[0] == "192")
                         {
-                            return gateway.Address.ToString();
+                            return GetIPv4ByGate(gateway.Address.ToString());
                         }
                     }
                 }
             }
             throw new Exception("Local NI 192.*.*.* not found. ");
+        }
+
+        static string GetIPv4ByGate(string gate)
+        {
+            var HostEntry = Dns.GetHostEntry(Dns.GetHostName());
+            foreach(var ip in HostEntry.AddressList) 
+            {
+                try
+                {
+                    if (ip.ToString().Split('.')[1] == "168" && ip.ToString().Split('.')[2] == gate.Split('.')[2])
+                        return ip.ToString();
+                }
+                catch (IndexOutOfRangeException) { }
+            }
+            throw new Exception("IPv4 by gate not found");
         }
     }
 }
