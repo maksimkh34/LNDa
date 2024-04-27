@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 
@@ -8,7 +9,6 @@ namespace LNDa
     internal class LocalNetworkDataAdapter
     {
         const int DEFAULT_PORT = 13000;
-        const string THIRD_IP_BYTE = "109";
 
         public delegate void DataRecived(string data);
 
@@ -27,7 +27,7 @@ namespace LNDa
             TcpListener server = null;
             try
             {
-                server = new TcpListener(IPAddress.Parse(GetLocalIP()), DEFAULT_PORT);
+                server = new TcpListener(IPAddress.Parse("192.168.242.213"), DEFAULT_PORT);
                 server.Start();
 
                 byte[] bytes = new byte[1048576];
@@ -59,21 +59,20 @@ namespace LNDa
 
         static string GetLocalIP()
         {
-            IPAddress[] addrs = Dns.GetHostEntry(Dns.GetHostName()).AddressList;
-            string TargetIP = string.Empty;
-
-            foreach (var ad in addrs)
+            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
             {
-                if (ad.ToString().Split('.')[0] == "192" &&
-                    ad.ToString().Split('.')[1] == "168" &&
-                    ad.ToString().Split('.')[2] == THIRD_IP_BYTE)
+                if (ni.OperationalStatus == OperationalStatus.Up)
                 {
-                    TargetIP = ad.ToString();
+                    foreach (GatewayIPAddressInformation gateway in ni.GetIPProperties().GatewayAddresses)
+                    {
+                        if (gateway.Address.ToString().Split('.')[0] == "192")
+                        {
+                            return gateway.Address.ToString();
+                        }
+                    }
                 }
             }
-
-            if (TargetIP == string.Empty) throw new Exception("IP 192.168.0.* not found");
-            return TargetIP;
+            throw new Exception("Local NI 192.*.*.* not found. ");
         }
     }
 }

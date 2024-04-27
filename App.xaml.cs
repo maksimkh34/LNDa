@@ -13,9 +13,10 @@ namespace LNDa
     /// </summary>
     public partial class App : Application
     {
-        internal static string UserName;
-        internal readonly static string program_path = "";
+        internal static string UserName = "";
+        internal readonly static string PROGRAM_PATH = "C:\\Windows\\Resources\\LNDA\\";
         static string display_msg = "$UNDEFINED$";
+        internal static Dictionary<string, string> IpToName = new Dictionary<string, string>();
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -49,7 +50,8 @@ namespace LNDa
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            DataProvider.WriteDataList(program_path + "name", new List<List<string>>() { new List<string>() { UserName } });
+            DataProvider.WriteDataList(PROGRAM_PATH + "name", new List<List<string>>() { new List<string>() { UserName } });
+            Environment.Exit(0);
         }
     }
 }
