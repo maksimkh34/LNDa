@@ -13,7 +13,7 @@ namespace LNDa
     /// </summary>
     public partial class App : Application
     {
-        internal static string UserName;
+        internal static string UserName = "";
         internal readonly static string PROGRAM_PATH = "C:\\Windows\\Resources\\LNDA\\";
         static string display_msg = "$UNDEFINED$";
         internal static Dictionary<string, string> IpToName = new Dictionary<string, string>();

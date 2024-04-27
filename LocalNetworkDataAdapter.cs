@@ -27,7 +27,7 @@ namespace LNDa
             TcpListener server = null;
             try
             {
-                server = new TcpListener(IPAddress.Parse(GetLocalIP()), DEFAULT_PORT);
+                server = new TcpListener(IPAddress.Parse("192.168.242.213"), DEFAULT_PORT);
                 server.Start();
 
                 byte[] bytes = new byte[1048576];
