@@ -67,7 +67,6 @@ namespace LNDa
          *      [data]
          *      
          *      file=README.md
-         *      
          *      text
          * 
          */

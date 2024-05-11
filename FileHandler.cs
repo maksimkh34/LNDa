@@ -10,7 +10,7 @@ namespace LNDa
         internal static void FileHandler(string fileName, string data) {
             new IncomingFileDialog().ShowDialog();
             // После того, как отработает IncomingFileDialog, в incomingFileDialogResult будет лежать какое-либо значение (что нужно сделать с файлом)
-            //
+            // Если файл нужно сохранить, сохраняем и открываем в проводнике папку с сохраненным файлом. Если открыть, то сохраняем без диалогов по временному пути и потом удаляем
             // Тут нужно написать реализацию этого (сохранение файла или его открытие)
 
 

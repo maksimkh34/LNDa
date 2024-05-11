@@ -48,6 +48,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FileHandler.cs" />
+    <Compile Include="IncomingFileDialog.xaml.cs">
+      <DependentUpon>IncomingFileDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SendDataWindow.xaml.cs">
       <DependentUpon>SendDataWindow.xaml</DependentUpon>
     </Compile>
@@ -69,6 +73,10 @@
     <Page Include="DisplayWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="IncomingFileDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
