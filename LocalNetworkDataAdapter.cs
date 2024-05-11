@@ -57,7 +57,7 @@ namespace LNDa
             server.Stop();
         }
 
-        static string GetLocalIP()
+        public static string GetLocalIP()
         {
             foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
             {
@@ -87,7 +87,26 @@ namespace LNDa
                 }
                 catch (IndexOutOfRangeException) { }
             }
-            throw new Exception("IPv4 by gate not found");
+            throw new NetworkInitError("IPv4 by gate not found");
+        }
+
+        public class NetworkInitError : Exception
+        {
+            public NetworkInitError()
+            {
+            }
+
+            public NetworkInitError(string message)
+                : base(message)
+            {
+            }
+
+            public NetworkInitError(string message, Exception inner)
+                : base(message, inner)
+            {
+
+            }
+
         }
     }
 }

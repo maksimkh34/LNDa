@@ -20,10 +20,16 @@ namespace LNDa
     public partial class MainWindow : Window
     {
         public MainWindow()
-        { 
+        {
             InitializeComponent();
-            Thread ServerThread = new Thread(new ThreadStart(() => LocalNetworkDataAdapter.StartPolling(App.DisplayDataRecived)));
-            ServerThread.Start();
+            try
+            {
+                Thread ServerThread = new Thread(new ThreadStart(() => LocalNetworkDataAdapter.StartPolling(App.DisplayDataRecived)));
+                ServerThread.Start();
+            } catch(LocalNetworkDataAdapter.NetworkInitError)
+            {
+                App.DisplayMessage("Ошибка инициализации локальной сети. ");
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
